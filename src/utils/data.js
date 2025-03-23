@@ -37,7 +37,27 @@ const RandomNumberAndColor = [
   },
   {
     number: 1024,
-    bgColor: "bg-gray-500",
+    bgColor: "bg-sky-500",
+  },
+  {
+    number: 2048,
+    bgColor: "bg-emerald-500",
+  },
+  {
+    number: 4096,
+    bgColor: "bg-lime-500",
+  },
+  {
+    number: 8192,
+    bgColor: "bg-teal-500",
+  },
+  {
+    number: 16384,
+    bgColor: "bg-cyan-500",
+  },
+  {
+    number: 32768,
+    bgColor: "bg-rose-500",
   },
 ];
 export default RandomNumberAndColor;
