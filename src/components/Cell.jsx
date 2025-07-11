@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import RandomNumberAndColor from "../utils/data";
 import PropTypes from "prop-types";
+import { useGame } from "../context/GameContext";
+import { useBoard } from "../context/BoardContext";
 
 const Cell = (props) => {
-  const {
-    item,
-    rowIndex,
-    colIndex,
-    tempArr,
-    randomNumber,
-    setBoard,
-    // setRandomNumber,
-    setIsGameOver,
-    setScore,
-  } = props;
+  const { setScore, setIsGameOver } = useGame();
+  const { setBoard, randomNumber, tempArr } = useBoard();
+  const { item, rowIndex, colIndex } = props;
   const [targetCell, setTargetCell] = useState([]);
   // console.log("tempArr", tempArr);
   const checkAdjacent = (row, col, visited, cells) => {
@@ -91,7 +85,7 @@ const Cell = (props) => {
 
       setIsGameOver(true);
     }
-    console.log(`Clicked...${item} value at (${rowIndex},${colIndex})`);
+    // console.log(`Clicked...${item} value at (${rowIndex},${colIndex})`);
     setTargetCell([]);
     const visited = Array.from({ length: tempArr.length }, () =>
       Array(tempArr[0].length).fill(false)
@@ -101,11 +95,11 @@ const Cell = (props) => {
     setTargetCell(newTargetCells);
 
     // console.log(`Target Cell: ${targetCell}`);
-    console.log("Temp Arr before shuffle:", tempArr);
+    // console.log("Temp Arr before shuffle:", tempArr);
   };
 
   useEffect(() => {
-    console.log("targetCell", targetCell);
+    // console.log("targetCell", targetCell);
     if (targetCell.length > 1) {
       mergeAndRefillCells();
       setScore((score) => score + 1);
@@ -151,12 +145,6 @@ Cell.propTypes = {
   item: PropTypes.number.isRequired,
   rowIndex: PropTypes.number.isRequired,
   colIndex: PropTypes.number.isRequired,
-  tempArr: PropTypes.array.isRequired,
-  randomNumber: PropTypes.array.isRequired,
-  setBoard: PropTypes.func.isRequired,
-  setRandomNumber: PropTypes.func.isRequired,
-  setIsGameOver: PropTypes.func.isRequired,
-  setScore: PropTypes.func.isRequired,
 };
 
 export default Cell;

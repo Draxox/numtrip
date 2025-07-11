@@ -1,5 +1,7 @@
-import PropTypes from "prop-types";
-const Header = ({ life }) => {
+
+import { useGame } from "../context/GameContext";
+const Header = () => {
+  const { life } = useGame();
   return (
     <>
       <header className="fixed w-full flex justify-between items-center px-10 py-4 bg-black/10">
@@ -17,8 +19,5 @@ const Header = ({ life }) => {
   );
 };
 
-Header.propTypes = {
-  life: PropTypes.number.isRequired,
-};
 
 export default Header;

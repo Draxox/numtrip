@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import { useGame } from "../context/GameContext";
 
-const GameOver = ({ setIsGameOver, life, setLife, reShuffle }) => {
+const GameOver = ({ reShuffle }) => {
+  const { life, setIsGameOver } = useGame();
+
   return (
     <>
       <div className="fixed inset-0 flex justify-center items-center bg-black/70 text-white z-10">
@@ -28,8 +31,7 @@ const GameOver = ({ setIsGameOver, life, setLife, reShuffle }) => {
 
           <button
             onClick={() => {
-              setIsGameOver(false);
-              setLife(3); //reset life to 3
+              sessionStorage.clear(); //clear session storage
               window.location.reload();
             }}
             className="px-4 py-4 bg-white text-3xl text-black rounded-md"
@@ -43,9 +45,6 @@ const GameOver = ({ setIsGameOver, life, setLife, reShuffle }) => {
 };
 
 GameOver.propTypes = {
-  setIsGameOver: PropTypes.func.isRequired,
-  life: PropTypes.func.isRequired,
-  setLife: PropTypes.func.isRequired,
   reShuffle: PropTypes.func.isRequired,
 };
 
